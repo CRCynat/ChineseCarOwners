@@ -1,7 +1,7 @@
 ![mike](M.I.K.E.png)
 
 # Chinese Cars
-## Overview
+### Overview
 This python script dissects a dataset, translates the column headers, removes duplicate rows, splits the dataset into manageable sizes for cleaning, validates the data, removes inconsistencies in the dataset and reconstructs the data into two readable files (one with consistent data and one with inconsistent data).
 
 # Requirements
@@ -28,7 +28,7 @@ from googletrans import Translator
 
 # Functioning Process
 
-## Translate Headers to English
+### Translate Headers to English
 ```
 translator = Translator()
 new_headers = []
@@ -42,7 +42,7 @@ for header in nationwide.columns:
 
 * This function creates a new headers list, stores the translated headers using the google translate library and appends the new list to the dataset
 
-## Normalize headers
+### Normalize headers
 ```
 def normalize_header(header):
   header = header.lower()
@@ -53,7 +53,7 @@ def normalize_header(header):
 
 * Transform headers to lowercase and replace spaces
 
-## Drop duplicates
+### Drop duplicates
 ```
 nationwide.drop_duplicates(subset=[
     'frame_number',
@@ -65,7 +65,7 @@ nationwide.drop_duplicates(subset=[
 
 * Drop duplicate records and keep the first occurrence
 
-## Drop columns
+### Drop columns
 ```
 columns_to_drop = ['gender', 'industry', 'monthly_salary',
                    'marriage', 'educate', 'brand',
@@ -75,7 +75,7 @@ columns_to_drop = ['gender', 'industry', 'monthly_salary',
 
 * Drop unnecessary columns
 
-## Split Dataset
+### Split Dataset
 ```
 def split_dataframe(df, num_chunks):
   """Splits a DataFrame into a specified number of chunks."""
@@ -85,7 +85,7 @@ def split_dataframe(df, num_chunks):
 * Split the dataset based on the dataset size into 5 parts
 * num_chunks = 5
 
-## Validate Email Addresses
+### Validate Email Addresses
 ```
 def validate_email(email):
     """Validates an email address using a regular expression."""
@@ -97,7 +97,7 @@ def validate_email(email):
 
 * Validate email address and keep rows with missing values as those rows could still have valuable information
 
-## Combine Chunks
+### Combine Chunks
 ```
 def combine_chunks(input_dir, output_file):
     """Combines all CSV files in a directory into a single CSV file."""
